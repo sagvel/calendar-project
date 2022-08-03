@@ -1,5 +1,3 @@
 # Calendar project
 
-For watching follow link -> [Calendar](https://legendary-liger-e9d765.netlify.app/)
-
-<a href="https://www.example.com/my great page">link</a>
+For watching follow link -> <a href="https://legendary-liger-e9d765.netlify.app/" target="_blank">Calendar</a>
