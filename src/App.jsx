@@ -8,17 +8,18 @@ import './common.scss';
 
 const App = () => {
   const [weekStartDate, setWeekStartDate] = useState(new Date());
+
   let weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
 
   const getNextWeek = () => {
-    setWeekStartDate((current) => {
-      console.dir(current);
-      console.log(new Date(Date.now(current) + 604800000));
-      return new Date(Date.now(current) + 604800000);
-    });
+    setWeekStartDate(
+      new Date(weekStartDate.setDate(weekStartDate.getDate() + 7))
+    );
   };
   const getPrevWeek = () => {
-    setWeekStartDate(new Date(Date.now(weekStartDate) - 604800000));
+    setWeekStartDate(
+      new Date(weekStartDate.setDate(weekStartDate.getDate() - 7))
+    );
   };
 
   const getCurrentWeek = () => {
