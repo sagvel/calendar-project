@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = (env, argv) => {
@@ -36,6 +37,9 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: './src/index.html',
       }),
+      new CopyPlugin({
+        patterns: [{ from: '_redirects', to: '' }],
+      }),
     ],
     devServer: {
       historyApiFallback: true,
@@ -53,7 +57,7 @@ module.exports = (env, argv) => {
     config.plugins.push(
       new MiniCssExtractPlugin({
         filename: '[name].css',
-      }),
+      })
     );
   }
 
