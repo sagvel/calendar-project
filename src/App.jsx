@@ -12,12 +12,10 @@ import './common.scss';
 
 const App = () => {
   const [weekStartDate, setWeekStartDate] = useState(new Date());
+  const [isModal, setIsModal] = useState(false);
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
   const currentMonth = months[weekDates[0].getMonth()];
   const nextMonth = months[weekDates[weekDates.length - 1].getMonth()];
-
-  console.log(currentMonth);
-  console.log(nextMonth);
 
   const getNextWeek = () => {
     setWeekStartDate(
@@ -34,36 +32,31 @@ const App = () => {
     setWeekStartDate(new Date());
   };
 
+  const openModal = () => {
+    setIsModal(true);
+  };
+
+  const closeModal = () => {
+    setIsModal(false);
+  };
+
   return (
     <>
       <Header
         getNextWeek={getNextWeek}
         getPrevWeek={getPrevWeek}
         getCurrentWeek={getCurrentWeek}
+        openModal={openModal}
         currentMonth={currentMonth}
         nextMonth={nextMonth}
       />
-      <Calendar weekDates={weekDates} />
+      <Calendar
+        weekDates={weekDates}
+        isModal={isModal}
+        closeModal={closeModal}
+      />
     </>
   );
 };
-
-// class App extends React.Component {
-//   state = {
-//     weekStartDate: new Date(),
-//   };
-
-//   render() {
-//     const { weekStartDate } = this.state;
-//     const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
-
-//     return (
-//       <>
-//         <Header />
-//         <Calendar weekDates={weekDates} />
-//       </>
-//     );
-//   }
-// }
 
 export default App;

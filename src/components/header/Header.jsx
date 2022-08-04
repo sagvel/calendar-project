@@ -6,12 +6,13 @@ const Header = ({
   getNextWeek,
   getPrevWeek,
   getCurrentWeek,
+  openModal,
   currentMonth,
   nextMonth,
 }) => {
   return (
     <header className="header">
-      <button className="button create-event-btn">
+      <button className="button create-event-btn" onClick={openModal}>
         <i className="fas fa-plus create-event-btn__icon"></i>Create
       </button>
       <div className="navigation">
