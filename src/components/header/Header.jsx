@@ -2,7 +2,13 @@ import React from 'react';
 
 import './header.scss';
 
-const Header = ({ getNextWeek, getPrevWeek, getCurrentWeek }) => {
+const Header = ({
+  getNextWeek,
+  getPrevWeek,
+  getCurrentWeek,
+  currentMonth,
+  nextMonth,
+}) => {
   return (
     <header className="header">
       <button className="button create-event-btn">
@@ -27,7 +33,11 @@ const Header = ({ getNextWeek, getPrevWeek, getCurrentWeek }) => {
         >
           <i className="fas fa-chevron-right"></i>
         </button>
-        <span className="navigation__displayed-month"></span>
+        <span className="navigation__displayed-month">
+          {currentMonth === nextMonth
+            ? currentMonth
+            : `${currentMonth} - ${nextMonth}`}
+        </span>
       </div>
     </header>
   );

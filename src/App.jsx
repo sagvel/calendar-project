@@ -2,14 +2,22 @@ import React, { useEffect, useState } from 'react';
 import Header from './components/header/Header.jsx';
 import Calendar from './components/calendar/Calendar.jsx';
 
-import { getWeekStartDate, generateWeekRange } from '../src/utils/dateUtils.js';
+import {
+  getWeekStartDate,
+  generateWeekRange,
+  months,
+} from '../src/utils/dateUtils.js';
 
 import './common.scss';
 
 const App = () => {
   const [weekStartDate, setWeekStartDate] = useState(new Date());
+  const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
+  const currentMonth = months[weekDates[0].getMonth()];
+  const nextMonth = months[weekDates[weekDates.length - 1].getMonth()];
 
-  let weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
+  console.log(currentMonth);
+  console.log(nextMonth);
 
   const getNextWeek = () => {
     setWeekStartDate(
@@ -32,6 +40,8 @@ const App = () => {
         getNextWeek={getNextWeek}
         getPrevWeek={getPrevWeek}
         getCurrentWeek={getCurrentWeek}
+        currentMonth={currentMonth}
+        nextMonth={nextMonth}
       />
       <Calendar weekDates={weekDates} />
     </>
