@@ -16,8 +16,12 @@
   }
 
   &:hover {
-    font-weight: bold;
+    cursor: pointer;
     background-color: red;
+  }
+
+  &:hover .delete {
+    display: block;
   }
 }
 

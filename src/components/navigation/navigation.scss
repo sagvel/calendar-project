@@ -15,3 +15,18 @@
     border-left: 1px solid #eee;
   }
 }
+
+.day-label__day-number_current {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2927c4;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.day-label__day-name_current {
+  color: #2927c4;
+}
