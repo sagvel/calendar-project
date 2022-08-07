@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
 import { days } from '../../utils/dateUtils.js';
 import './navigation.scss';
 
 const Navigation = ({ weekDates }) => {
-  // const currentDay = new Date().getDate();
   return (
     <header className="calendar__header">
       {weekDates.map((dayDate) => {

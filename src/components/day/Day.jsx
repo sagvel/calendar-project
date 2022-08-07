@@ -11,10 +11,9 @@ const Day = ({ dataDay, dayStart, dayEvents, handleDelete }) => {
     .map((val, index) => index);
 
   const isCurrentHour = new Date().getHours();
-  const isCurrentDay = new Date().getDate() === dayStart.getDate();
-  // console.log(dayStart.getMinutes());
-  // console.log(isCurrentDay);
-  // console.log(linePos);
+  const isCurrentDay =
+    new Date().getDate() === dayStart.getDate() &&
+    new Date().getMonth() === dayStart.getMonth();
 
   useState(() => {
     const intervalId = setInterval(() => {
@@ -36,8 +35,6 @@ const Day = ({ dataDay, dayStart, dayEvents, handleDelete }) => {
         return (
           <div key={dataDay + hour}>
             <Hour
-              // key={dataDay + hour}
-
               dataHour={hour}
               hourEvents={hourEvents}
               handleDelete={handleDelete}

@@ -1,6 +1,5 @@
 import React from 'react';
 import DelModal from '../delModal/DelModal';
-
 import './event.scss';
 
 const Event = ({ id, height, marginTop, title, time, handleDelete }) => {

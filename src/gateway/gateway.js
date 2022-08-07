@@ -25,19 +25,3 @@ export const deleteEvent = (eventId) => {
     method: 'DELETE',
   });
 };
-
-// export const deleteTask = taskId => {
-//   return fetch(`${BASE_URL}/${taskId}`, {
-//     method: 'DELETE',
-//   });
-// };
-
-// export const createTask = taskData => {
-//   return fetch(BASE_URL, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json;charset=utf-8',
-//     },
-//     body: JSON.stringify(taskData),
-//   });
-// };

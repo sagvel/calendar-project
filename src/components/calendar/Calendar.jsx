@@ -38,8 +38,6 @@ const Calendar = ({ weekDates, isModal, closeModal }) => {
       endTime
     );
 
-    console.log(newEvent.dateFrom);
-
     createEvent(newEvent)
       .then((response) => {
         if (!response.ok) {
