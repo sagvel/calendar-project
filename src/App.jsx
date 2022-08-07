@@ -17,18 +17,18 @@ const App = () => {
   const currentMonth = months[weekDates[0].getMonth()];
   const nextMonth = months[weekDates[weekDates.length - 1].getMonth()];
 
-  const getNextWeek = () => {
+  const nextWeek = () => {
     setWeekStartDate(
       new Date(weekStartDate.setDate(weekStartDate.getDate() + 7))
     );
   };
-  const getPrevWeek = () => {
+  const prevWeek = () => {
     setWeekStartDate(
       new Date(weekStartDate.setDate(weekStartDate.getDate() - 7))
     );
   };
 
-  const getCurrentWeek = () => {
+  const currentWeek = () => {
     setWeekStartDate(new Date());
   };
 
@@ -43,9 +43,9 @@ const App = () => {
   return (
     <>
       <Header
-        getNextWeek={getNextWeek}
-        getPrevWeek={getPrevWeek}
-        getCurrentWeek={getCurrentWeek}
+        nextWeek={nextWeek}
+        prevWeek={prevWeek}
+        currentWeek={currentWeek}
         openModal={openModal}
         currentMonth={currentMonth}
         nextMonth={nextMonth}

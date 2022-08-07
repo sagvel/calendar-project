@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './timeLine.scss';
 
-export default function TimeLine({ marginTop }) {
+const TimeLine = ({ marginTop }) => {
   const styleTimeLine = {
     marginTop,
   };
@@ -10,4 +11,10 @@ export default function TimeLine({ marginTop }) {
       <i className="fas fa-circle"></i>
     </div>
   );
-}
+};
+
+TimeLine.propTypes = {
+  marginTop: PropTypes.number.isRequired,
+};
+
+export default TimeLine;

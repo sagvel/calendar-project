@@ -1,5 +1,6 @@
 import React from 'react';
 import DelModal from '../delModal/DelModal';
+import PropTypes from 'prop-types';
 import './event.scss';
 
 const Event = ({ id, height, marginTop, title, time, handleDelete }) => {
@@ -15,6 +16,19 @@ const Event = ({ id, height, marginTop, title, time, handleDelete }) => {
       <DelModal id={id} handleDelete={handleDelete} />
     </div>
   );
+};
+
+Event.propTypes = {
+  id: PropTypes.string.isRequired,
+  height: PropTypes.number.isRequired,
+  marginTop: PropTypes.number.isRequired,
+  title: PropTypes.string,
+  time: PropTypes.string.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+};
+
+Event.dafaultProps = {
+  title: '',
 };
 
 export default Event;

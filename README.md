@@ -1,6 +1,6 @@
 # Calendar project
 
-For seeing please follow link -> <a href="https://legendary-liger-e9d765.netlify.app/">Calendar</a>
+For watching please follow link -> <a href="https://legendary-liger-e9d765.netlify.app/">Calendar</a>
 
 ## Used technologies
 

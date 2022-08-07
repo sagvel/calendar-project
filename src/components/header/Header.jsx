@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './header.scss';
 
 const Header = ({
-  getNextWeek,
-  getPrevWeek,
-  getCurrentWeek,
+  nextWeek,
+  prevWeek,
+  currentWeek,
   openModal,
   currentMonth,
   nextMonth,
@@ -22,22 +23,13 @@ const Header = ({
         Create
       </button>
       <div className="navigation">
-        <button
-          className="navigation__today-btn button"
-          onClick={getCurrentWeek}
-        >
+        <button className="navigation__today-btn button" onClick={currentWeek}>
           Today
         </button>
-        <button
-          className="icon-button navigation__nav-icon"
-          onClick={getPrevWeek}
-        >
+        <button className="icon-button navigation__nav-icon" onClick={prevWeek}>
           <i className="fas fa-chevron-left"></i>
         </button>
-        <button
-          className="icon-button navigation__nav-icon"
-          onClick={getNextWeek}
-        >
+        <button className="icon-button navigation__nav-icon" onClick={nextWeek}>
           <i className="fas fa-chevron-right"></i>
         </button>
         <span className="navigation__displayed-month">
@@ -48,6 +40,15 @@ const Header = ({
       </div>
     </header>
   );
+};
+
+Header.propTypes = {
+  nextWeek: PropTypes.func.isRequired,
+  prevWeek: PropTypes.func.isRequired,
+  currentWeek: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
+  currentMonth: PropTypes.string.isRequired,
+  nextMonth: PropTypes.string.isRequired,
 };
 
 export default Header;

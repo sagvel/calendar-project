@@ -26,10 +26,6 @@ export const getDateTime = (date, time) => {
   return withMinutes;
 };
 
-export const getCurrentDay = () => {
-  console.log(new Date().getDate());
-};
-
 export const formatMins = (mins) => {
   return mins < 10 ? `0${mins}` : mins;
 };

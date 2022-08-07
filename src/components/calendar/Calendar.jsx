@@ -4,17 +4,12 @@ import Navigation from './../navigation/Navigation';
 import Week from '../week/Week';
 import Sidebar from '../sidebar/Sidebar';
 import Modal from '../modal/Modal';
+import PropTypes from 'prop-types';
 import './calendar.scss';
 
 const Calendar = ({ weekDates, isModal, closeModal }) => {
   const [actionEvents, setEvents] = useState([]);
-  const [modalData, setModalData] = useState({
-    title: '',
-    description: '',
-    date: '',
-    startTime: '',
-    endTime: '',
-  });
+  const [modalData, setModalData] = useState({});
 
   const createNewEvent = (title, description, date, startTime, endTime) => {
     const actionEvent = {
@@ -123,6 +118,12 @@ const Calendar = ({ weekDates, isModal, closeModal }) => {
       )}
     </section>
   );
+};
+
+Calendar.propTypes = {
+  weekDates: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isModal: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
 
 export default Calendar;

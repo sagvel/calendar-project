@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Hour from '../hour/Hour';
 import TimeLine from '../timeline/TimeLine';
-
+import PropTypes from 'prop-types';
 import './day.scss';
 
 const Day = ({ dataDay, dayStart, dayEvents, handleDelete }) => {
@@ -47,6 +47,30 @@ const Day = ({ dataDay, dayStart, dayEvents, handleDelete }) => {
       })}
     </div>
   );
+};
+
+Day.propTypes = {
+  dataDay: PropTypes.number.isRequired,
+  dayStart: PropTypes.instanceOf(Date).isRequired,
+  dayEvents: PropTypes.arrayOf(
+    PropTypes.shape({
+      dateFrom: PropTypes.instanceOf(Date).isRequired,
+      dateTo: PropTypes.instanceOf(Date).isRequired,
+      description: PropTypes.string,
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string,
+    })
+  ),
+  handleDelete: PropTypes.func.isRequired,
+};
+
+Day.defaultProps = {
+  dayEvents: PropTypes.arrayOf(
+    PropTypes.shape({
+      description: '',
+      title: '',
+    })
+  ),
 };
 
 export default Day;

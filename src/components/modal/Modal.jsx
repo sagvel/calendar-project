@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './modal.scss';
 
 const Modal = ({ closeModal, handleSubmit, handleChange, modalData }) => {
+  console.log(modalData);
   return (
     <div className="modal overlay">
       <div className="modal__content">
@@ -59,4 +61,26 @@ const Modal = ({ closeModal, handleSubmit, handleChange, modalData }) => {
   );
 };
 
+Modal.propTypes = {
+  closeModal: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  modalData: PropTypes.shape({
+    date: PropTypes.string,
+    description: PropTypes.string,
+    endTime: PropTypes.string,
+    startTime: PropTypes.string,
+    title: PropTypes.string,
+  }),
+};
+
+Modal.defaultProps = {
+  modalData: PropTypes.shape({
+    date: '',
+    description: '',
+    endTime: '',
+    startTime: '',
+    title: '',
+  }),
+};
 export default Modal;
