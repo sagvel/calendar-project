@@ -13,8 +13,8 @@ const Day = ({ dataDay, dayStart, dayEvents, handleDelete }) => {
   const isCurrentHour = new Date().getHours();
   const isCurrentDay = new Date().getDate() === dayStart.getDate();
   // console.log(dayStart.getMinutes());
-  console.log(isCurrentDay);
-  console.log(linePos);
+  // console.log(isCurrentDay);
+  // console.log(linePos);
 
   useState(() => {
     const intervalId = setInterval(() => {

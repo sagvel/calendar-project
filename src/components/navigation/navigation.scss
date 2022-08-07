@@ -16,17 +16,20 @@
   }
 }
 
-.day-label__day-number_current {
-  color: #fff;
+.day-label__day-number {
+  color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #2927c4;
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  &_current {
+    background-color: #0800ff;
+    color: #fff;
+  }
 }
 
 .day-label__day-name_current {
-  color: #2927c4;
+  color: #0800ff;
 }
