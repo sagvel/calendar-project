@@ -9,7 +9,9 @@ const Navigation = ({ weekDates }) => {
   return (
     <header className="calendar__header">
       {weekDates.map((dayDate) => {
-        const isCurrentDay = new Date().getDate() === dayDate.getDate();
+        const isCurrentDay =
+          new Date().getDate() === dayDate.getDate() &&
+          new Date().getMonth() === dayDate.getMonth();
         return (
           <div className="calendar__day-label day-label" key={Math.random()}>
             <span
