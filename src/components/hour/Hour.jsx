@@ -14,6 +14,7 @@ const Hour = ({ dataHour, hourEvents, handleDelete }) => {
         const eventEnd = `${dateTo.getHours()}:${formatMins(
           dateTo.getMinutes()
         )}`;
+        {/* console.log(dateFrom.getMinutes()); */}
 
         return (
           <Event

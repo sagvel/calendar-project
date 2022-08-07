@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Hour from '../hour/Hour';
+import TimeLine from '../timeline/TimeLine';
 
 import './day.scss';
 
-const Day = ({ dataDay, dayEvents, handleDelete }) => {
+const Day = ({ dataDay, dayStart, dayEvents, handleDelete }) => {
+  const [linePos, setLinePos] = useState(new Date().getMinutes());
   const hours = Array(24)
     .fill()
     .map((val, index) => index);
 
-  // console.log(dataDay, dayEvents);
+  const isCurrentHour = new Date().getHours();
+  const isCurrentDay = new Date().getDate() === dayStart.getDate();
+  // console.log(dayStart.getMinutes());
+  console.log(isCurrentDay);
+  console.log(linePos);
+
+  useState(() => {
+    const intervalId = setInterval(() => {
+      setLinePos(new Date().getMinutes());
+    }, 60000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [linePos]);
   return (
     <div className="calendar__day" data-day={dataDay}>
       {hours.map((hour) => {
@@ -18,12 +34,18 @@ const Day = ({ dataDay, dayEvents, handleDelete }) => {
         );
 
         return (
-          <Hour
-            key={dataDay + hour}
-            dataHour={hour}
-            hourEvents={hourEvents}
-            handleDelete={handleDelete}
-          />
+          <div key={dataDay + hour}>
+            <Hour
+              // key={dataDay + hour}
+
+              dataHour={hour}
+              hourEvents={hourEvents}
+              handleDelete={handleDelete}
+            />
+            {isCurrentHour === hour && isCurrentDay && (
+              <TimeLine marginTop={linePos - 60} />
+            )}
+          </div>
         );
       })}
     </div>
