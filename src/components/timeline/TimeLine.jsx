@@ -7,7 +7,7 @@ const TimeLine = ({ marginTop }) => {
     marginTop,
   };
   return (
-    <div className="timeLine" style={styleTimeLine}>
+    <div className="time-line" style={styleTimeLine}>
       <i className="fas fa-circle"></i>
     </div>
   );
