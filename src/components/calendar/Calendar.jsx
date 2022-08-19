@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { createEvent, deleteEvent, getEvents } from '../../gateway/gateway';
+import { deleteEvent, getEvents } from '../../gateway/gateway';
 import Navigation from './../navigation/Navigation';
 import Week from '../week/Week';
 import Sidebar from '../sidebar/Sidebar';
@@ -9,59 +9,59 @@ import './calendar.scss';
 
 const Calendar = ({ weekDates, isModal, closeModal }) => {
   const [actionEvents, setEvents] = useState([]);
-  const [modalData, setModalData] = useState({});
+  // const [modalData, setModalData] = useState({});
 
-  const createNewEvent = (title, description, date, startTime, endTime) => {
-    const actionEvent = {
-      title,
-      description,
-      dateFrom: new Date(date + ', ' + startTime),
-      dateTo: new Date(date + ', ' + endTime),
-    };
+  // const createNewEvent = (title, description, date, startTime, endTime) => {
+  //   const actionEvent = {
+  //     title,
+  //     description,
+  //     dateFrom: new Date(date + ', ' + startTime),
+  //     dateTo: new Date(date + ', ' + endTime),
+  //   };
 
-    return actionEvent;
-  };
+  //   return actionEvent;
+  // };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const { title, description, date, startTime, endTime } = modalData;
-    const newEvent = createNewEvent(
-      title,
-      description,
-      date,
-      startTime,
-      endTime
-    );
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const { title, description, date, startTime, endTime } = modalData;
+  //   const newEvent = createNewEvent(
+  //     title,
+  //     description,
+  //     date,
+  //     startTime,
+  //     endTime
+  //   );
 
-    createEvent(newEvent)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Internal Server Error');
-        } else {
-          getEvents().then((res) => {
-            setEvents(res);
-          });
-        }
-      })
-      .catch(() => {
-        alert("Internal Server Error. Can't display event");
-      });
+  //   createEvent(newEvent)
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error('Internal Server Error');
+  //       } else {
+  //         getEvents().then((res) => {
+  //           setEvents(res);
+  //         });
+  //       }
+  //     })
+  //     .catch(() => {
+  //       alert("Internal Server Error. Can't display event");
+  //     });
 
-    setModalData({
-      title: '',
-      description: '',
-      date: '',
-      startTime: '',
-      endTime: '',
-    });
+  //   setModalData({
+  //     title: '',
+  //     description: '',
+  //     date: '',
+  //     startTime: '',
+  //     endTime: '',
+  //   });
 
-    closeModal();
-  };
+  //   closeModal();
+  // };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setModalData({ ...modalData, [name]: value });
-  };
+  // const handleChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setModalData({ ...modalData, [name]: value });
+  // };
 
   const handleDelete = (id) => {
     deleteEvent(id).then((response) => {
@@ -108,14 +108,7 @@ const Calendar = ({ weekDates, isModal, closeModal }) => {
           />
         </div>
       </div>
-      {isModal && (
-        <Modal
-          closeModal={closeModal}
-          handleSubmit={handleSubmit}
-          handleChange={handleChange}
-          modalData={modalData}
-        />
-      )}
+      {isModal && <Modal closeModal={closeModal} setEvents={setEvents} />}
     </section>
   );
 };

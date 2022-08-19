@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Hour from '../hour/Hour';
 import TimeLine from '../timeline/TimeLine';
 import PropTypes from 'prop-types';
 import './day.scss';
 
 const Day = ({ dataDay, dayStart, dayEvents, handleDelete }) => {
-  const [linePos, setLinePos] = useState(new Date().getMinutes());
   const hours = Array(24)
     .fill()
     .map((val, index) => index);
@@ -13,21 +12,12 @@ const Day = ({ dataDay, dayStart, dayEvents, handleDelete }) => {
   const isCurrentHour = new Date().getHours();
   const isCurrentDay =
     new Date().getDate() === dayStart.getDate() &&
-    new Date().getMonth() === dayStart.getMonth();
+    new Date().getMonth() === dayStart.getMonth() &&
+    new Date().getFullYear() === dayStart.getFullYear();
 
-  useState(() => {
-    const intervalId = setInterval(() => {
-      setLinePos(new Date().getMinutes());
-    }, 60000);
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [linePos]);
   return (
     <div className="calendar__day" data-day={dataDay}>
       {hours.map((hour) => {
-        //getting all events from the day we will render
         const hourEvents = dayEvents.filter(
           (event) => event.dateFrom.getHours() === hour
         );
@@ -39,9 +29,7 @@ const Day = ({ dataDay, dayStart, dayEvents, handleDelete }) => {
               hourEvents={hourEvents}
               handleDelete={handleDelete}
             />
-            {isCurrentHour === hour && isCurrentDay && (
-              <TimeLine marginTop={linePos - 60} />
-            )}
+            {isCurrentHour === hour && isCurrentDay && <TimeLine />}
           </div>
         );
       })}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Header from './components/header/Header.jsx';
 import Calendar from './components/calendar/Calendar.jsx';
 
@@ -16,15 +16,16 @@ const App = () => {
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
   const currentMonth = months[weekDates[0].getMonth()];
   const nextMonth = months[weekDates[weekDates.length - 1].getMonth()];
+  const daysPerWeek = 7;
 
   const nextWeek = () => {
     setWeekStartDate(
-      new Date(weekStartDate.setDate(weekStartDate.getDate() + 7))
+      new Date(weekStartDate.setDate(weekStartDate.getDate() + daysPerWeek))
     );
   };
   const prevWeek = () => {
     setWeekStartDate(
-      new Date(weekStartDate.setDate(weekStartDate.getDate() - 7))
+      new Date(weekStartDate.setDate(weekStartDate.getDate() - daysPerWeek))
     );
   };
 
@@ -32,12 +33,8 @@ const App = () => {
     setWeekStartDate(new Date());
   };
 
-  const openModal = () => {
-    setIsModal(true);
-  };
-
-  const closeModal = () => {
-    setIsModal(false);
+  const toggleModal = () => {
+    setIsModal(!isModal);
   };
 
   return (
@@ -46,14 +43,14 @@ const App = () => {
         nextWeek={nextWeek}
         prevWeek={prevWeek}
         currentWeek={currentWeek}
-        openModal={openModal}
+        openModal={toggleModal}
         currentMonth={currentMonth}
         nextMonth={nextMonth}
       />
       <Calendar
         weekDates={weekDates}
         isModal={isModal}
-        closeModal={closeModal}
+        closeModal={toggleModal}
       />
     </>
   );
