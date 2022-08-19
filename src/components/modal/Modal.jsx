@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import './modal.scss';
 import { createEvent, getEvents } from '../../gateway/gateway';
+import './modal.scss';
 
 const Modal = ({ closeModal, setEvents }) => {
   const [modalData, setModalData] = useState({
@@ -61,7 +61,7 @@ const Modal = ({ closeModal, setEvents }) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setModalData({ ...modalData1, [name]: value });
+    setModalData({ ...modalData, [name]: value });
   };
 
   return (
@@ -77,7 +77,7 @@ const Modal = ({ closeModal, setEvents }) => {
               name="title"
               placeholder="Title"
               className="event-form__field"
-              value={modalData1.title}
+              value={modalData.title}
               onChange={handleChange}
             />
             <div className="event-form__time">
@@ -85,14 +85,14 @@ const Modal = ({ closeModal, setEvents }) => {
                 type="date"
                 name="date"
                 className="event-form__field"
-                value={modalData1.date}
+                value={modalData.date}
                 onChange={handleChange}
               />
               <input
                 type="time"
                 name="startTime"
                 className="event-form__field"
-                value={modalData1.startTime}
+                value={modalData.startTime}
                 onChange={handleChange}
               />
               <span>-</span>
@@ -100,7 +100,7 @@ const Modal = ({ closeModal, setEvents }) => {
                 type="time"
                 name="endTime"
                 className="event-form__field"
-                value={modalData1.endTime}
+                value={modalData.endTime}
                 onChange={handleChange}
               />
             </div>
@@ -108,7 +108,7 @@ const Modal = ({ closeModal, setEvents }) => {
               name="description"
               placeholder="Description"
               className="event-form__field"
-              value={modalData1.description}
+              value={modalData.description}
               onChange={handleChange}
             />
             <button type="submit" className="event-form__submit-btn">
@@ -123,24 +123,7 @@ const Modal = ({ closeModal, setEvents }) => {
 
 Modal.propTypes = {
   closeModal: PropTypes.func.isRequired,
-  // handleSubmit: PropTypes.func.isRequired,
-  // handleChange: PropTypes.func.isRequired,
-  // modalData: PropTypes.shape({
-  //   date: PropTypes.string,
-  //   description: PropTypes.string,
-  //   endTime: PropTypes.string,
-  //   startTime: PropTypes.string,
-  //   title: PropTypes.string,
-  // }),
+  setEvents: PropTypes.func.isRequired,
 };
 
-Modal.defaultProps = {
-  // modalData: PropTypes.shape({
-  //   date: '',
-  //   description: '',
-  //   endTime: '',
-  //   startTime: '',
-  //   title: '',
-  // }),
-};
 export default Modal;

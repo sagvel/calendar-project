@@ -11,7 +11,9 @@ const Navigation = ({ weekDates }) => {
       {weekDates.map((dayDate) => {
         const isCurrentDay =
           new Date().getDate() === dayDate.getDate() &&
-          new Date().getMonth() === dayDate.getMonth();
+          new Date().getMonth() === dayDate.getMonth() &&
+          new Date().getFullYear() === dayDate.getFullYear();
+
         return (
           <div className="calendar__day-label day-label" key={Math.random()}>
             <span
