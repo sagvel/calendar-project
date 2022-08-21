@@ -2,6 +2,7 @@ import React from 'react';
 import Hour from '../hour/Hour';
 import TimeLine from '../timeline/TimeLine';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import './day.scss';
 
 const Day = ({ dataDay, dayStart, dayEvents, handleDelete }) => {
@@ -11,9 +12,10 @@ const Day = ({ dataDay, dayStart, dayEvents, handleDelete }) => {
 
   const isCurrentHour = new Date().getHours();
   const isCurrentDay =
-    new Date().getDate() === dayStart.getDate() &&
-    new Date().getMonth() === dayStart.getMonth() &&
-    new Date().getFullYear() === dayStart.getFullYear();
+    moment(dayStart).valueOf() === moment().startOf('day').valueOf();
+  // new Date().getDate() === dayStart.getDate() &&
+  // new Date().getMonth() === dayStart.getMonth() &&
+  // new Date().getFullYear() === dayStart.getFullYear();
 
   return (
     <div className="calendar__day" data-day={dataDay}>

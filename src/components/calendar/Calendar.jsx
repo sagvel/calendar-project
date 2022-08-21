@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import './calendar.scss';
 
 const Calendar = ({ weekDates, isModal, closeModal }) => {
-  const [actionEvents, setEvents] = useState([]);
+  const [activeEvents, setActiveEvents] = useState([]);
 
   const handleDelete = (id) => {
     deleteEvent(id).then((response) => {
@@ -17,7 +17,7 @@ const Calendar = ({ weekDates, isModal, closeModal }) => {
       } else {
         getEvents()
           .then((res) => {
-            setEvents(res);
+            setActiveEvents(res);
           })
           .catch(() => {
             alert("Internal Server Error. Can't display event");
@@ -29,14 +29,14 @@ const Calendar = ({ weekDates, isModal, closeModal }) => {
   useEffect(() => {
     getEvents()
       .then((res) => {
-        setEvents(res);
+        setActiveEvents(res);
       })
       .catch(() => {
         alert("Internal Server Error. Can't display event");
       });
   }, []);
 
-  const dataEvents = actionEvents.map((event) => ({
+  const events = activeEvents.map((event) => ({
     ...event,
     dateFrom: new Date(event.dateFrom),
     dateTo: new Date(event.dateTo),
@@ -50,12 +50,12 @@ const Calendar = ({ weekDates, isModal, closeModal }) => {
           <Sidebar />
           <Week
             weekDates={weekDates}
-            events={dataEvents}
+            events={events}
             handleDelete={handleDelete}
           />
         </div>
       </div>
-      {isModal && <Modal closeModal={closeModal} setEvents={setEvents} />}
+      {isModal && <Modal closeModal={closeModal} setEvents={setActiveEvents} />}
     </section>
   );
 };

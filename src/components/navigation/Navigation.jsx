@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import moment from 'moment';
 import { days } from '../../utils/dateUtils.js';
 import './navigation.scss';
 
@@ -10,9 +10,7 @@ const Navigation = ({ weekDates }) => {
     <header className="calendar__header">
       {weekDates.map((dayDate) => {
         const isCurrentDay =
-          new Date().getDate() === dayDate.getDate() &&
-          new Date().getMonth() === dayDate.getMonth() &&
-          new Date().getFullYear() === dayDate.getFullYear();
+          moment(dayDate).valueOf() === moment().startOf('day').valueOf();
 
         return (
           <div className="calendar__day-label day-label" key={Math.random()}>

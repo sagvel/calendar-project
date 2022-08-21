@@ -4,7 +4,7 @@ import { createEvent, getEvents } from '../../gateway/gateway';
 import './modal.scss';
 
 const Modal = ({ closeModal, setEvents }) => {
-  const [modalData, setModalData] = useState({
+  const [createEventData, setCreateEventData] = useState({
     title: '',
     description: '',
     date: '',
@@ -25,7 +25,7 @@ const Modal = ({ closeModal, setEvents }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { title, description, date, startTime, endTime } = modalData;
+    const { title, description, date, startTime, endTime } = createEventData;
     const newEvent = createNewEvent(
       title,
       description,
@@ -48,7 +48,7 @@ const Modal = ({ closeModal, setEvents }) => {
         alert("Internal Server Error. Can't display event");
       });
 
-    setModalData({
+    setCreateEventData({
       title: '',
       description: '',
       date: '',
@@ -61,7 +61,7 @@ const Modal = ({ closeModal, setEvents }) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setModalData({ ...modalData, [name]: value });
+    setCreateEventData({ ...createEventData, [name]: value });
   };
 
   return (
@@ -77,7 +77,7 @@ const Modal = ({ closeModal, setEvents }) => {
               name="title"
               placeholder="Title"
               className="event-form__field"
-              value={modalData.title}
+              value={createEventData.title}
               onChange={handleChange}
             />
             <div className="event-form__time">
@@ -85,14 +85,14 @@ const Modal = ({ closeModal, setEvents }) => {
                 type="date"
                 name="date"
                 className="event-form__field"
-                value={modalData.date}
+                value={createEventData.date}
                 onChange={handleChange}
               />
               <input
                 type="time"
                 name="startTime"
                 className="event-form__field"
-                value={modalData.startTime}
+                value={createEventData.startTime}
                 onChange={handleChange}
               />
               <span>-</span>
@@ -100,7 +100,7 @@ const Modal = ({ closeModal, setEvents }) => {
                 type="time"
                 name="endTime"
                 className="event-form__field"
-                value={modalData.endTime}
+                value={createEventData.endTime}
                 onChange={handleChange}
               />
             </div>
@@ -108,7 +108,7 @@ const Modal = ({ closeModal, setEvents }) => {
               name="description"
               placeholder="Description"
               className="event-form__field"
-              value={modalData.description}
+              value={createEventData.description}
               onChange={handleChange}
             />
             <button type="submit" className="event-form__submit-btn">
