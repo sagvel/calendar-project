@@ -12,27 +12,15 @@ const Modal = ({ closeModal, setEvents }) => {
     endTime: '',
   });
 
-  const createNewEvent = (title, description, date, startTime, endTime) => {
-    const actionEvent = {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const { title, description, date, startTime, endTime } = createEventData;
+    const newEvent = {
       title,
       description,
       dateFrom: new Date(date + ', ' + startTime),
       dateTo: new Date(date + ', ' + endTime),
     };
-
-    return actionEvent;
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const { title, description, date, startTime, endTime } = createEventData;
-    const newEvent = createNewEvent(
-      title,
-      description,
-      date,
-      startTime,
-      endTime
-    );
 
     createEvent(newEvent)
       .then((response) => {

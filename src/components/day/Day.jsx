@@ -13,9 +13,6 @@ const Day = ({ dataDay, dayStart, dayEvents, handleDelete }) => {
   const isCurrentHour = new Date().getHours();
   const isCurrentDay =
     moment(dayStart).valueOf() === moment().startOf('day').valueOf();
-  // new Date().getDate() === dayStart.getDate() &&
-  // new Date().getMonth() === dayStart.getMonth() &&
-  // new Date().getFullYear() === dayStart.getFullYear();
 
   return (
     <div className="calendar__day" data-day={dataDay}>
